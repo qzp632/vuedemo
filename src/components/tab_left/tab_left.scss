@@ -1,0 +1,23 @@
+.notused_left {
+  width: 32vw;
+  height: 100%;
+  background: url('../../assets/abc.png');
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+}
+.notused_left_top {
+  height: 9.86vw;
+}
+.notused_left_con {
+  flex: 1;
+  color: #ffffff;
+}
+.notused_left_con .money {
+  font-size: 8vw;
+}
+.notused_left_bottom {
+  height: 9.86vw;
+  font-size: 3.2vw;
+  color: #ffffff;
+}

@@ -22,7 +22,7 @@ module.exports = {
     extensions: ['.js', '.vue', '.json'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
-      '@': resolve('src')
+      '@': resolve('src'),
     }
   },
   module: {
@@ -38,13 +38,9 @@ module.exports = {
         include: [resolve('src'), resolve('test')]
       },
       {
-        test: /\.less$/,
-        loader: 'bstyle-loader!css-loader!less-loader'
-      },
-      {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
-        options: {
+        query: {
           limit: 10000,
           name: utils.assetsPath('img/[name].[hash:7].[ext]')
         }
@@ -52,7 +48,7 @@ module.exports = {
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
         loader: 'url-loader',
-        options: {
+        query: {
           limit: 10000,
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }

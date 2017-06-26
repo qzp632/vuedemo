@@ -1,4 +1,4 @@
-# vuedemo
+# vue_coupon
 
 > A Vue.js project
 
