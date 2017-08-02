@@ -21,6 +21,33 @@ var autoOpenBrowser = !!config.dev.autoOpenBrowser
 var proxyTable = config.dev.proxyTable
 
 var app = express()
+
+var arrdata = require('../data.json');
+var notused = arrdata.body;
+var expired = arrdata.body1;
+var alreadyuse = arrdata.body2;
+
+var apiroutes = express.Router();
+
+apiroutes.get('/notused',function(req,res){
+    res.json({
+        notused:notused
+    });
+})
+
+apiroutes.get('/expired',function(req,res){
+    res.json({
+        expired:expired
+    });
+})
+
+apiroutes.post('/alreadyuse',function(req,res){
+    res.json({
+        alreadyuse:alreadyuse
+    });
+})
+
+app.use('/api',apiroutes)
 var compiler = webpack(webpackConfig)
 
 var devMiddleware = require('webpack-dev-middleware')(compiler, {

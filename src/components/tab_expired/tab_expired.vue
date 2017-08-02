@@ -21,27 +21,33 @@
   </div>
 </template>
 
-<script type="text/ecmascript-6">
+<script>
 import tab_left from '@/components/tab_left/tab_left'
 import hideCon from '@/components/hideCon/hideCon'
-import data from '../../../data.json'
-for (var i = 0; i < data.body1.length; i++) {
-  data.body1[i].ish = false
-}
 export default {
   data(){
     return {
-      datalist: data.body1
+      datalist: {}
     }
   },
-  created () {
-    for(var i=0;i<this.datalist.length;i++){
-      this.datalist[i].ish = false;
-    }
-
+  mounted () {
+    this.cartView()
+    // console.log(this.$store.state.count)
   },
   methods: {
+      cartView() {
+        var self = this
+        this.$http.get('api/expired').then(function (res) {
+            for(var i=0;i<res.body.expired.length;i++){
+              res.body.expired[i].ish = false;
+            }  
+            self.datalist = res.body.expired     
+        },function (res) {
+            console.log(res)
+        })
+      },
       btn(item) {
+        // console.log(this.$store.commit("increment"))
         item.ish = !item.ish;
       }
   },

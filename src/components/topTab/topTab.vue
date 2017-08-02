@@ -2,7 +2,7 @@
   <div class="topTab">
     <ul>
       <li>
-        <router-link to="/notused">未使用(<span>12</span>)</router-link>
+        <router-link to="/notused">未使用</router-link>
       </li>
       <li>
         <router-link to="/expired">已过期</router-link>

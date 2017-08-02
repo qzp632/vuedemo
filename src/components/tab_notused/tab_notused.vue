@@ -1,6 +1,6 @@
 <template>
   <div style="overflow:auto;height:100%;flex:1">
-    <div class="tab_notused" v-for="(item,index) in datalist">
+    <div class="tab_notused" v-for="(item,index) in datalist" @click="btnItem(item)">
         <div class="notused_box">
           <tab-left :leftData="item"></tab-left>
 
@@ -18,32 +18,49 @@
         </div>
         <hideCon v-show="item.ish" :itemcon="item"></hideCon>
     </div>
+    <itDetail :isn="food" ref="isn"></itDetail>
   </div>
 </template>
 
-<script type="text/ecmascript-6">
+<script>
 import tab_left from '@/components/tab_left/tab_left'
 import hideCon from '@/components/hideCon/hideCon'
-import data from '../../../data.json'
-for (var i = 0; i < data.body.length; i++) {
-  data.body[i].ish = false
-}
+import itDetail from '@/components/itDetail/itDetail'
 export default {
   data(){
     return {
-      datalist: data.body
+      datalist: {},
+      food: {}
     }
   },
-  created () {
+  mounted () {
+    // console.log(this.$store.state.count)
+    this.cartView()
   },
   methods: {
+      cartView() {
+        var self = this
+        this.$http.get('api/notused').then(function (res) {
+            for(var i=0;i<res.body.notused.length;i++){
+              res.body.notused[i].ish = false;
+            }  
+            self.datalist = res.body.notused     
+        },function (res) {
+            console.log(res)
+        })
+      },
       btn(item) {
         item.ish = !item.ish;
+      },
+      btnItem(item) {
+        // this.food = item
+        // this.$refs.isn.show()
       }
   },
   components: {
     'tab-left': tab_left,
-    'hideCon': hideCon
+    'hideCon': hideCon,
+    'itDetail': itDetail
   }
 }
 </script>
