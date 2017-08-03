@@ -40,7 +40,7 @@ export default {
   methods: {
       cartView() {
         var self = this
-        this.$http.get('api/notused').then(function (res) {
+        this.$http.get('http://localhost:8080/api/notused').then(function (res) {
             for(var i=0;i<res.body.notused.length;i++){
               res.body.notused[i].ish = false;
             }  

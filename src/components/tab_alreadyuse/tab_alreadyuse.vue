@@ -40,7 +40,7 @@ export default {
   methods: {
       cartView() {
         let param = {age:1}
-        reqst("api/alreadyuse",
+        reqst("http://localhost:8080/api/alreadyuse",
           param,
           res => {
             for(let i=0;i<res.alreadyuse.length;i++){

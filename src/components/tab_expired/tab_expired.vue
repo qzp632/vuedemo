@@ -37,7 +37,7 @@ export default {
   methods: {
       cartView() {
         var self = this
-        this.$http.get('api/expired').then(function (res) {
+        this.$http.get('http://localhost:8080/api/expired').then(function (res) {
             for(var i=0;i<res.body.expired.length;i++){
               res.body.expired[i].ish = false;
             }  
